@@ -24,22 +24,33 @@ module.exports={
     }),
     new webpack.optimize.UglifyJsPlugin({
       compressor:{
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        sassLoader: {
-          includePaths: [
-              path.resolve(__dirname, './node_modules/bootstrap/scss'),
-          ]
-        }
+        warnings: false,
+        properties: true,
+        sequences: true,
+        dead_code: true,
+        conditionals: true,
+        comparisons: true,
+        evaluate: true,
+        booleans: true,
+        unused: true,
+        loops: true,
+        hoist_funs: true,
+        cascade: true,
+        if_return: true,
+        join_vars: true,
+        drop_debugger: true,
+        negate_iife: true,
+        unsafe: true,
+        hoist_vars: true
+      },
+      output: {
+        comments: false
       }
     }),
     new webpack.DefinePlugin({
       'process.env':{
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        GOOGLE_API_KEY: JSON.stringify(process.env.GOOGLE_API_KEY),
+        HOST_URL: JSON.stringify(process.env.HOST_URL),
       }
     })
   ],
@@ -74,7 +85,7 @@ module.exports={
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
       }, {
-        test: /\.scss$/,
+        test: /\.(s)?css$/,
         use: [
           {loader: 'style-loader'},
           {
@@ -82,8 +93,7 @@ module.exports={
             options: {
               sourceMap: true
             }
-          },
-          {
+          },{
             loader: 'sass-loader',
             options: {
               sourceMap: true,

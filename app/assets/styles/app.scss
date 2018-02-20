@@ -4,16 +4,60 @@
 @import "bootstrap";
 // @import "foundation";
 // @include foundation-everything;
+@import "animate.min.css";
 
+// functions
+@import "mixins";
+@import "functions";
+@import "fonts";
 
-//Components
-// @import "components/Accounts";
+// Components
+@import "components/mainPage";
+
+// CSS hacks
+:focus{outline:none;} //remove lue box shadow
+
+// Variables
+$navHeight: 56px;
+$secondary-lighter: #ddd;
 
 body, html{
+  font-family: $font_normal;
   margin: 0;
   padding: 0;
 }
-
 ul.list-unstyled{
   list-style: none;
+}
+.pad-away-from-nav{
+  padding-top: $navHeight;
+}
+section.pad{
+  padding: 20px 0 20px 0;
+}
+
+.bg-secondarylighter{
+  background-color: $secondary-lighter;
+}
+
+.maxHeightPage{
+  min-height: 100vh;
+}
+.maxHeightPageWithNav{
+  min-height: calc(100vh - #{$navHeight});
+}
+.maxWidthPage{
+  width: 100%;
+}
+.wholePage{
+  @extend .maxHeightPage;
+  @extend .maxWidthPage;
+  position: relative;
+  padding: 64px 0 20px 0;
+}
+.wholePageWithNav{
+  @extend .maxHeightPageWithNav;
+  @extend .maxWidthPage;
+  position: relative;
+  padding: 64px 0 20px 0;
 }

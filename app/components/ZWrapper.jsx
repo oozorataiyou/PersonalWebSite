@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faHome from '@fortawesome/fontawesome-pro-regular/faHome';
-import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
 
 export class ZWrapper extends React.Component{
   PropTypes = {
@@ -28,7 +27,7 @@ export class ZWrapper extends React.Component{
             </ul>
           </div>
         </nav>
-        <div style={{height:"60px"}}>Wrapper</div>
+        <div className="pad-away-from-nav" />
         {this.props.children}
       </div>
     )
