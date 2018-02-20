@@ -1,0 +1,63 @@
+$bkg: #111;
+$blue: #14a5ff;
+$blue-glow: #22cef9;
+$red: #f90000;
+$red-glow: #ff1919;
+$green-glow: #b3ff51;
+$green: #0cd808;
+
+h1.neon {
+  margin: 0;
+  font-size: 70px;
+  padding: 0;
+  font-family: $font_cursive;
+  color: $blue;
+  @include textShadow-neon(#228DFF);
+  position: relative;
+  z-index: 5;
+}
+
+h2.neon {
+  padding: 0;
+  font-size: 50px;
+  font-family: $font_mono;
+  color: $red;
+  @include textShadow-neon($red-glow);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #db0808;
+  position: relative;
+  z-index: 5;
+}
+
+#neon_blocker{
+  width: 142px;
+  height: 84px;
+  background-color: $bkg;
+  position: absolute;
+  top: 64px;
+  right: calc(50% - #{division(142px, 2)});
+  z-index: 4;
+}
+
+#neon_border {
+  width: 380px;
+  height: 112px;
+  background-color: $bkg;
+  border: 3px solid $green;
+  position: absolute;
+  top: 102px;
+  border-radius: 10px;
+  right: calc(50% - #{division(380px, 2)});
+  @include boxShadow($green-glow);
+  z-index: 3;
+}
+
+.showMore{
+  position: absolute;
+  bottom: 48px;
+  left: calc(50% - 41px);
+}
+
+.schoolLogo{
+  width: 100px;
+}

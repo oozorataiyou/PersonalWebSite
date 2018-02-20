@@ -1,0 +1,24 @@
+$glow-1: 0 0 10px;
+$glow-2: 0 0 20px;
+$glow-3: 0 0 30px;
+$glow-4: 0 0 40px;
+$glow-5: 0 0 70px;
+$glow-6: 0 0 80px;
+$glow-7: 0 0 100px;
+$glow-8: 0 0 150px;
+
+@mixin boxShadow-neon($color: $blue) {
+  box-shadow: 0 0 1px $color, 0 0 2px $color, 0 0 6px $color, 0 0 12px $color, inset 0 0 1px $color, inset 0 0 2px $color, inset 0 0 6px $color, inset 0 0 12px $color;
+}
+
+@mixin textShadow-neon($color: $blue){
+  text-shadow: 0 0 1px $color, 0 0 2px $color, 0 0 6px $color, 0 0 12px $color;
+}
+
+@mixin textShadow($color: $blue){
+  text-shadow: $glow-1 $color, $glow-2 $color, $glow-3 $color, $glow-4 $color, $glow-5 $color, $glow-6 $color, $glow-7 $color, $glow-8 $color;
+}
+
+@mixin boxShadow($color: $blue) {
+  box-shadow: $glow-1 $color, $glow-2 $color, $glow-3 $color, $glow-4 $color, inset $glow-1 $color, inset $glow-2 $color, inset $glow-3 $color, inset $glow-4 $color;
+}
