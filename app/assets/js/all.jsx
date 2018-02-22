@@ -5,5 +5,6 @@
     //   var method = $(window).scrollTop() > 10 ? 'addClass' : 'removeClass';
     //   $('#topNav')[method]('bg-success');
     // });
+    // $('[data-toggle="tooltip"]').tooltip();
   });
 })(jQuery);

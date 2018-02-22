@@ -12,7 +12,7 @@ h1.neon {
   padding: 0;
   font-family: $font_cursive;
   color: $blue;
-  @include textShadow-neon(#228DFF);
+  @include textShadow(#228DFF);
   position: relative;
   z-index: 5;
 }
@@ -27,29 +27,6 @@ h2.neon {
   -webkit-text-stroke-color: #db0808;
   position: relative;
   z-index: 5;
-}
-
-#neon_blocker{
-  width: 142px;
-  height: 84px;
-  background-color: $bkg;
-  position: absolute;
-  top: 64px;
-  right: calc(50% - #{division(142px, 2)});
-  z-index: 4;
-}
-
-#neon_border {
-  width: 380px;
-  height: 112px;
-  background-color: $bkg;
-  border: 3px solid $green;
-  position: absolute;
-  top: 102px;
-  border-radius: 10px;
-  right: calc(50% - #{division(380px, 2)});
-  @include boxShadow($green-glow);
-  z-index: 3;
 }
 
 .showMore{
