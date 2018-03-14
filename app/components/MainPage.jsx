@@ -5,6 +5,7 @@ import { Parallax } from 'react-parallax';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import moment from 'moment';
 import Typing from 'react-typing-animation';
+import {startGetSchools} from 'actions';
 
 import faChevronDown from '@fortawesome/fontawesome-pro-regular/faChevronDown';
 import faSun from '@fortawesome/fontawesome-pro-regular/faSun';
@@ -28,7 +29,9 @@ import faCss3 from '@fortawesome/fontawesome-free-brands/faCss3';
 
 export class MainPage extends React.Component{
   componentDidMount(){
+    var {dispatch} = this.props;
     window.addEventListener('load', this.formLoaded);
+    dispatch(startGetSchools());
   }
 
   formLoaded = () =>{
@@ -92,7 +95,7 @@ export class MainPage extends React.Component{
         <section className="jumbotron jumbotron-fluid">
           <div className="container">
             <h1 className="display-4">{greetingIcon()} Good {greeting()}</h1>
-            <p className="lead">Hi, i'm Malcolm, as of today i'm {age()}. I have a passion for programming and photography. During the school holidays or reaks I enjoy picking up something new programming languages to broaden my knowledge.</p>
+            <p className="lead">Hi, i'm Malcolm, as of today i'm {age()}. I have a passion for programming and photography. During the school holidays or breaks I enjoy picking up something new programming languages to broaden my knowledge.</p>
           </div>
         </section>
         {/* Education */}
@@ -1237,6 +1240,12 @@ export class MainPage extends React.Component{
             </div>
           </div>
         </div>
+        <section className="pad container invisible">
+          <h1><FontAwesomeIcon icon={faHandPaper}/> Skills</h1>
+          <div>
+
+          </div>
+        </section>
         {/* <section className="pad container invisible">
           <h1><FontAwesomeIcon icon={faHandPaper}/> Skills</h1>
         </section> */}
@@ -1245,4 +1254,4 @@ export class MainPage extends React.Component{
   }
 }
 
-export default MainPage;
+export default connect()(MainPage);

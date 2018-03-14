@@ -8,3 +8,16 @@ export const authReducer = (state = {}, action) =>{
       return state;
   }
 }
+
+export const schoolsReducer = (state = [], action) =>{
+  switch (action.type) {
+    case 'ADD_SCHOOL':
+      return [
+        ...state,
+        action.schools
+      ]
+      break;
+    default:
+      return state;
+  }
+}

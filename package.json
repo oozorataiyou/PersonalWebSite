@@ -30,6 +30,7 @@
     "bowser": "^1.7.3",
     "css-loader": "^0.28.3",
     "express": "^4.15.3",
+    "firebase": "^4.11.0",
     "font-loader": "^0.1.2",
     "getmac": "^1.2.1",
     "jquery": "^3.2.1",

@@ -2,14 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'; 
 import thunk from 'redux-thunk';
 
 import { reducer as formReducer } from 'redux-form';
-// import * as myReducers from 'reducers';
+import * as myReducers from 'reducers';
 
 export var configure = (initialState = {}) =>{
   //Using axios and redux tgt
 
   var reducers = combineReducers({
     form: formReducer,
-    // auth: authReducer
+    ...myReducers
   })
 
   const middleware = [thunk];
