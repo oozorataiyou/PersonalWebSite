@@ -26,7 +26,7 @@ export var startGetSchools = () =>{
               ...subject.data()
             })
           });
-          docs[0].forEach((cca) =>{
+          docs[1].forEach((cca) =>{
             ccas.push({
               id: cca.id,
               ...cca.data()
