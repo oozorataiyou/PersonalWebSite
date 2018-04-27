@@ -1,14 +1,21 @@
 import firebase, {firebaseStore} from 'app/firebase/';
 
-export const addSchool = (schools) =>{
+export const addSchool = (school) =>{
   return{
     type: 'ADD_SCHOOL',
-    schools
+    school
+  }
+}
+
+export const loadingSchools = ()=>{
+  return{
+    type: "LOADING_SCHOOL"
   }
 }
 
 export var startGetSchools = () =>{
   return(dispatch, getState) =>{
+    dispatch(loadingSchools());
     var schoolsRef = firebaseStore.collection(`school`).orderBy('timeFrom', 'desc');
 
     return schoolsRef.get().then((snapshot) =>{

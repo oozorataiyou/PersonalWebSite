@@ -12,12 +12,22 @@ export const authReducer = (state = {}, action) =>{
 export const schoolsReducer = (state = [], action) =>{
   switch (action.type) {
     case 'ADD_SCHOOL':
-      return [
+      var school = (state.school !== undefined) ? state.school : [];
+      school.push(action.school);
+      return {
         ...state,
-        action.schools
-      ]
+        isLoading: false,
+        school
+      }
       break;
+    case 'LOADING_SCHOOL':
+      return {
+        ...state,
+        isLoading: true
+      }
     default:
-      return state;
+      return {
+        isLoading: true
+      };
   }
 }

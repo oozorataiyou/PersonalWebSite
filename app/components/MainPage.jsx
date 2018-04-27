@@ -68,9 +68,15 @@ export class MainPage extends React.Component{
     }
 
     var renderSchools = () =>{
-      return schools.map((school) =>{
-        return(<SchoolWrapper key={school.id} {...school} />)
-      })
+      if (!schools.isLoading){
+        return schools.school.map((school) =>{
+          return(<SchoolWrapper key={school.id} {...school} />)
+        })
+      }else{
+        return(
+          <div>loading</div>
+        )
+      }
     }
 
     return(
