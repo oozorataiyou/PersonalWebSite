@@ -25,6 +25,11 @@ export const schoolsReducer = (state = [], action) =>{
         ...state,
         isLoading: true
       }
+    case 'GOT_SCHOOLS_TOTAL':
+      return {
+        ...state,
+        numberOfSchools: action.number
+      }
     default:
       return {
         isLoading: true

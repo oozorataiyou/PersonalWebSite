@@ -13,6 +13,13 @@ export const loadingSchools = ()=>{
   }
 }
 
+export const gotSchoolsTotal = (number) =>{
+  return{
+    type: "GOT_SCHOOLS_TOTAL",
+    number
+  }
+}
+
 export var startGetSchools = () =>{
   return(dispatch, getState) =>{
     dispatch(loadingSchools());
@@ -20,6 +27,7 @@ export var startGetSchools = () =>{
 
     return schoolsRef.get().then((snapshot) =>{
       var schools = [];
+      dispatch(gotSchoolsTotal(snapshot.size));
 
       snapshot.forEach((school) =>{
         var proSubject = firebaseStore.collection('school').doc(school.id).collection('Subjects').orderBy('name').get();

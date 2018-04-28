@@ -69,12 +69,23 @@ export class MainPage extends React.Component{
 
     var renderSchools = () =>{
       if (!schools.isLoading){
-        return schools.school.map((school) =>{
-          return(<SchoolWrapper key={school.id} {...school} />)
-        })
+        if(schools.numberOfSchools != schools.school.length){
+          var width = schools.school.length / schools.numberOfSchools * 100;
+          return(
+            <div className="progress">
+              <div className="progress-bar" style={{width: width+'%'}} role="progressbar" aria-valuenow={width} aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          )
+        }else{
+          return schools.school.map((school) =>{
+            return(<SchoolWrapper key={school.id} {...school} />)
+          })
+        }
       }else{
         return(
-          <div>loading</div>
+          <div className="progress">
+            <div className="progress-bar" style={{width: 0}} role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
         )
       }
     }
