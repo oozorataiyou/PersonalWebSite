@@ -38,7 +38,7 @@ app.use(express.static('public'));
 //app.use('/api/user', dbUser);
 
 // check if the url is looking for images
-app.get(/\.(jpe?g|png|gif|svg)$/i, function(req, res){
+app.get(/\.(jpe?g|png|gif|svg|map)$/i, function(req, res){
   res.sendFile(path.resolve(__dirname, req.originalUrl));
 })
 

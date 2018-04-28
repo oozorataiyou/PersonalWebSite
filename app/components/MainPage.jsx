@@ -5,8 +5,9 @@ import { Parallax } from 'react-parallax';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import moment from 'moment';
 import Typing from 'react-typing-animation';
-import {startGetSchools} from 'actions';
+import {startGetSchools, startGetLanguages} from 'actions';
 import SchoolWrapper from 'app/components/main/SchoolWrapper';
+import LanguageDetails from 'app/components/main/LanguageDetails';
 
 import faChevronDown from '@fortawesome/fontawesome-pro-regular/faChevronDown';
 import faSun from '@fortawesome/fontawesome-pro-regular/faSun';
@@ -18,6 +19,7 @@ import faFileExcel from '@fortawesome/fontawesome-pro-solid/faFileExcel';
 import faFilePowerpoint from '@fortawesome/fontawesome-pro-solid/faFilePowerpoint';
 import faCertificate from '@fortawesome/fontawesome-pro-solid/faCertificate';
 import faGlobe from '@fortawesome/fontawesome-pro-solid/faGlobe';
+
 import faMicrophoneAlt from '@fortawesome/fontawesome-pro-solid/faMicrophoneAlt';
 import faPencilAlt from '@fortawesome/fontawesome-pro-solid/faPencilAlt';
 import faVolumeUp from '@fortawesome/fontawesome-pro-solid/faVolumeUp';
@@ -33,6 +35,7 @@ export class MainPage extends React.Component{
     var {dispatch} = this.props;
     window.addEventListener('load', this.formLoaded);
     dispatch(startGetSchools());
+    dispatch(startGetLanguages());
   }
 
   formLoaded = () =>{
@@ -42,7 +45,7 @@ export class MainPage extends React.Component{
   }
 
   render(){
-    var {schools} = this.props;
+    var {schools, languages} = this.props;
     var meta = {
       title: "Home"
     }
@@ -68,9 +71,13 @@ export class MainPage extends React.Component{
     }
 
     var renderSchools = () =>{
+      if (schools.length == 0) {
+        return;
+      }
+
       if (!schools.isLoading){
-        if(schools.numberOfSchools != schools.school.length){
-          var width = schools.school.length / schools.numberOfSchools * 100;
+        if(schools.size != schools.school.length){
+          var width = schools.school.length / schools.size * 100;
           return(
             <div className="progress">
               <div className="progress-bar" style={{width: width+'%'}} role="progressbar" aria-valuenow={width} aria-valuemin="0" aria-valuemax="100"></div>
@@ -86,6 +93,41 @@ export class MainPage extends React.Component{
           <div className="progress">
             <div className="progress-bar" style={{width: 0}} role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
+        )
+      }
+    }
+
+    var renderLanguages = () =>{
+      if (languages.length == 0) {
+        return;
+      }
+
+      if (!languages.isLoading){
+        if(languages.size != languages.languages.length){
+          var width = languages.languages.length / languages.size * 100;
+          return(
+            <tr>
+              <td colSpan="4">
+                <div className="progress">
+                  <div className="progress-bar" style={{width: width+'%'}} role="progressbar" aria-valuenow={width} aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+            </tr>
+          )
+        }else{
+          return languages.languages.map((language) =>{
+            return(<LanguageDetails key={language.id} details={language} />)
+          })
+        }
+      }else{
+        return(
+          <tr>
+            <td colSpan="4">
+              <div className="progress">
+                <div className="progress-bar" style={{width: 0}} role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </td>
+          </tr>
         )
       }
     }
@@ -184,18 +226,7 @@ export class MainPage extends React.Component{
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">English</th>
-                        <td>8</td>
-                        <td>8</td>
-                        <td>10</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Chinese</th>
-                        <td>6</td>
-                        <td>2</td>
-                        <td>10</td>
-                      </tr>
+                      {renderLanguages()}
                     </tbody>
                   </table>
                 </section>
@@ -212,5 +243,8 @@ export class MainPage extends React.Component{
 }
 
 export default connect((state)=>{
-  return {schools: state.schoolsReducer}
+  return {
+    schools: state.schoolsReducer,
+    languages: state.languagesReducer
+  }
 })(MainPage);

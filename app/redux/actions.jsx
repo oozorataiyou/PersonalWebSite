@@ -1,21 +1,22 @@
 import firebase, {firebaseStore} from 'app/firebase/';
+import * as rConst from "reduxConstants";
 
 export const addSchool = (school) =>{
   return{
-    type: 'ADD_SCHOOL',
+    type: rConst.ADD_SCHOOL,
     school
   }
 }
 
 export const loadingSchools = ()=>{
   return{
-    type: "LOADING_SCHOOL"
+    type: rConst.LOADING_SCHOOL
   }
 }
 
 export const gotSchoolsTotal = (number) =>{
   return{
-    type: "GOT_SCHOOLS_TOTAL",
+    type: rConst.GOT_SCHOOLS_TOTAL,
     number
   }
 }
@@ -59,5 +60,46 @@ export var startGetSchools = () =>{
     }).catch((err) => {
       console.log('Error getting documents', err);
     });
+  }
+}
+
+export const addLanguages = (languages) =>{
+  return{
+    type: rConst.ADD_LANGUAGES,
+    languages
+  }
+}
+
+export const loadingLanguage = () =>{
+  return{
+    type: rConst.LOADING_LANGUAGE
+  }
+}
+
+export const gotLangugeTotal = (number) =>{
+  return{
+    type: rConst.GOT_LANGUAGE_TOTAL,
+    number
+  }
+}
+
+export var startGetLanguages = () =>{
+  return(dispatch, getState)=>{
+    dispatch(loadingLanguage());
+    var languageRef = firebaseStore.collection(`language`).orderBy('listen', 'desc');
+
+    return languageRef.get().then((snapshot) =>{
+      var languages = [];
+      dispatch(gotLangugeTotal(snapshot.size));
+
+      snapshot.forEach((language) =>{
+        languages.push({
+          id: language.id,
+          ...language.data()
+        })
+      });
+
+      dispatch(addLanguages(languages));
+    })
   }
 }
