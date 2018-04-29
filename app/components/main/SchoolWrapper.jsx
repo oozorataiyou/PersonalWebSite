@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import moment from 'moment';
-import SchoolSubject from 'app/components/main/SchoolSubject'
+import SchoolSubject from 'app/components/main/SchoolSubject';
 import SchoolCCA from 'app/components/main/SchoolCCA';
 
-export class SchoolWrapper extends React.Component{
+export default class SchoolWrapper extends React.Component{
   render(){
     var {id, cert, grade, logo, name, timeFrom, timeTo = 'current', subjects, ccas} = this.props;
     var renderDate = () =>{
@@ -30,10 +29,10 @@ export class SchoolWrapper extends React.Component{
           <div className="col-xl-11 col-lg-10 col-md-9 col-sm-8 col-12">
             <div className="d-flex justify-content-between">
               <h5 className="mb-1">{name}</h5>
-              <small>{grade}</small>
+              <small><span className="badge badge-primary">{grade}</span></small>
             </div>
             <p className="mb-1">{cert}</p>
-            <small>{renderDate()}</small>
+            <small className="text-muted">{renderDate()}</small>
             {renderSubjects()}
             {renderCCA()}
           </div>
@@ -42,4 +41,3 @@ export class SchoolWrapper extends React.Component{
     )
   }
 }
-export default SchoolWrapper;

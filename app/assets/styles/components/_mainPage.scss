@@ -29,10 +29,11 @@ h2.neon {
   z-index: 5;
 }
 
-.showMore{
+a .showMore{
   position: absolute;
   bottom: 48px;
   left: calc(50% - 41px);
+  color: white;
 }
 
 .schoolLogo{

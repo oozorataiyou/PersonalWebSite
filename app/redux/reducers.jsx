@@ -1,16 +1,5 @@
 import * as rConst from "reduxConstants";
 
-// export const authReducer = (state = {}, action) =>{
-//   switch (action.type) {
-//     case 'ADD_SESSION':
-//       return{
-//         ...action.session
-//       }
-//     default:
-//       return state;
-//   }
-// }
-
 export const schoolsReducer = (state = [], action) =>{
   switch (action.type) {
     case rConst.ADD_SCHOOL:
@@ -48,7 +37,51 @@ export const languagesReducer = (state = [], action) =>{
         ...state,
         isLoading: true
       }
-    case rConst.GOT_LANGUAGE_TOTAL:
+    case rConst.GOT_LANGUAGES_TOTAL:
+      return {
+        ...state,
+        size: action.number
+      }
+    default: return state;
+  }
+}
+
+export const skillsReducer = (state = [], action) =>{
+  switch (action.type) {
+    case rConst.ADD_SKILLS:
+      return {
+        ...state,
+        isLoading: false,
+        skills: action.skills
+      }
+    case rConst.LOADING_SKILL:
+      return {
+        ...state,
+        isLoading: true
+      }
+    case rConst.GOT_SKILLS_TOTAL:
+      return {
+        ...state,
+        size: action.number
+      }
+    default: return state;
+  }
+}
+
+export const certificationsReducer = (state = [], action) =>{
+  switch (action.type) {
+    case rConst.ADD_CERTIFICATIONS:
+      return {
+        ...state,
+        isLoading: false,
+        cert: action.cert
+      }
+    case rConst.LOADING_CERTIFICATION:
+      return {
+        ...state,
+        isLoading: true
+      }
+    case rConst.GOT_CERTIFICATIONS_TOTAL:
       return {
         ...state,
         size: action.number

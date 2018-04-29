@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faHome from '@fortawesome/fontawesome-pro-regular/faHome';
+import faGithub from '@fortawesome/fontawesome-free-brands/faGithub';
+import faLinkedin from '@fortawesome/fontawesome-free-brands/faLinkedin';
 
-export class ZWrapper extends React.Component{
+export default class ZWrapper extends React.Component{
   PropTypes = {
     classes: PropTypes.object.isRequired,
   };
@@ -21,8 +23,16 @@ export class ZWrapper extends React.Component{
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <Link className="nav-link" to="/"><FontAwesomeIcon icon={faHome}/></Link>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/" activeClassName="active"><FontAwesomeIcon icon={faHome}/></NavLink>
+              </li>
+            </ul>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a href="https://github.com/taiyoOzora/PersonalWebSite" target="_blank" className="nav-link"><FontAwesomeIcon icon={faGithub}/></a>
+              </li>
+              <li className="nav-item">
+                <a href="https://www.linkedin.com/in/malcolmchew" target="_blank" className="nav-link"><FontAwesomeIcon icon={faLinkedin}/></a>
               </li>
             </ul>
           </div>
@@ -33,4 +43,3 @@ export class ZWrapper extends React.Component{
     )
   }
 }
-export default ZWrapper;

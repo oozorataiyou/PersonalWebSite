@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import moment from 'moment';
 
-export class LanguageDetails extends React.Component{
+export default class LanguageDetails extends React.Component{
   render(){
     var {id, listen, speak, write, name} = this.props.details;
 
@@ -16,4 +14,3 @@ export class LanguageDetails extends React.Component{
     )
   }
 }
-export default LanguageDetails;

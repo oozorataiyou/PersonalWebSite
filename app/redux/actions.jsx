@@ -78,7 +78,7 @@ export const loadingLanguage = () =>{
 
 export const gotLangugeTotal = (number) =>{
   return{
-    type: rConst.GOT_LANGUAGE_TOTAL,
+    type: rConst.GOT_LANGUAGES_TOTAL,
     number
   }
 }
@@ -100,6 +100,88 @@ export var startGetLanguages = () =>{
       });
 
       dispatch(addLanguages(languages));
+    })
+  }
+}
+
+export const addSkills = (skills) =>{
+  return{
+    type: rConst.ADD_SKILLS,
+    skills
+  }
+}
+
+export const loadingSkill = () =>{
+  return{
+    type: rConst.LOADING_SKILL
+  }
+}
+
+export const gotSkillTotal = (number) =>{
+  return{
+    type: rConst.GOT_SKILLS_TOTAL,
+    number
+  }
+}
+
+export var startGetSkills = () =>{
+  return(dispatch, getState)=>{
+    dispatch(loadingSkill());
+    var skillRef = firebaseStore.collection(`skills`).orderBy('name', 'asc');
+
+    return skillRef.get().then((snapshot) =>{
+      var skills = [];
+      dispatch(gotSkillTotal(snapshot.size));
+
+      snapshot.forEach((skill) =>{
+        skills.push({
+          id: skill.id,
+          ...skill.data()
+        })
+      });
+
+      dispatch(addSkills(skills));
+    })
+  }
+}
+
+export const addCerts = (cert) =>{
+  return{
+    type: rConst.ADD_CERTIFICATIONS,
+    cert
+  }
+}
+
+export const loadingCert = () =>{
+  return{
+    type: rConst.LOADING_CERTIFICATION
+  }
+}
+
+export const gotCertTotal = (number) =>{
+  return{
+    type: rConst.GOT_CERTIFICATIONS_TOTAL,
+    number
+  }
+}
+
+export var startGetCerts = () =>{
+  return(dispatch, getState)=>{
+    dispatch(loadingCert());
+    var certRef = firebaseStore.collection(`certifications`).orderBy('name', 'asc');
+
+    return certRef.get().then((snapshot) =>{
+      var certs = [];
+      dispatch(gotCertTotal(snapshot.size));
+
+      snapshot.forEach((cert) =>{
+        certs.push({
+          id: cert.id,
+          ...cert.data()
+        })
+      });
+
+      dispatch(addCerts(certs));
     })
   }
 }
