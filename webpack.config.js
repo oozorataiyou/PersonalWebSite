@@ -13,6 +13,7 @@ module.exports={
   entry: [
     "script-loader!jquery/dist/jquery.min.js",
     "script-loader!bootstrap/dist/js/bootstrap.bundle.min.js",
+    "babel-polyfill",
     "./app/app.jsx"
   ],
   externals: {
@@ -34,7 +35,7 @@ module.exports={
         ie8: false,
         keep_fnames: false,
       }
-    })]
+    })],
   },
   plugins: [
     new webpack.ProvidePlugin({
