@@ -46,6 +46,7 @@ export class MainPage extends React.Component{
 
   render(){
     var {schools, languages, skills, certifications} = this.props;
+    var readingDelay = 3000;
     var meta = {
       title: "Home"
     }
@@ -197,15 +198,21 @@ export class MainPage extends React.Component{
             <div>
               <h1 className="neon">Hello</h1>
               <h2 className="neon">
-                <Typing loop={true} speed={100} startDelay={500}>
-                  <span>I'm Malcolm</span>
-                  <Typing.Backspace count={7} delay={3000} />
-                  <span>{age()}</span>
-                  <Typing.Backspace count={2} delay={3000} />
-                  <span>a programmer</span>
-                  <Typing.Backspace count={12} delay={3000} />
-                  <span>a photographer</span>
-                  <Typing.Backspace count={18} delay={3000} />
+                <Typing loop={false} speed={100} startDelay={2000}>
+                  I'm Malcolm
+                  <Typing.Delay ms={readingDelay} />
+                  <Typing.Backspace count={7} />
+                  {age()}
+                  <Typing.Delay ms={readingDelay} />
+                  <Typing.Backspace count={2} />
+                  a programmer
+                  <Typing.Delay ms={readingDelay} />
+                  <Typing.Backspace count={12} />
+                  a photographer
+                  <Typing.Delay ms={readingDelay} />
+                  <Typing.Backspace count={14} />
+                  Malcolm
+                  {/* <Typing.Reset count={4}/> */}
                 </Typing>
               </h2>
             </div>
