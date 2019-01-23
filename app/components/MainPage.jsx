@@ -192,7 +192,7 @@ export class MainPage extends React.Component{
 
     return(
       <DocumentMeta {...meta}>
-        <Parallax bgImage={'assets/images/bg/mainPage_01.jpg'} bgImageAlt="the cat" strength={200} className="maxHeightPageWithNav">
+        <Parallax bgImage={'assets/images/bg/mainPage_01.jpg'} bgImageAlt="a moon" strength={500}>
           <div className="wholePageWithNav" style={{"color":"white", "textAlign":"center"}}>
             <div>
               <h1 className="neon">Hello</h1>

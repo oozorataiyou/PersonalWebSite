@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 const path = require('path');
 var envFile = require('node-env-file');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -17,35 +18,28 @@ module.exports={
   externals: {
     jquery: 'jQuery'
   },
+  optimization: {
+    minimizer: [new UglifyJsPlugin({
+      cache: true,
+      parallel: true,
+      extractComments: true,
+      uglifyOptions: {
+        warnings: false,
+        parse: {},
+        compress: {},
+        mangle: true, // Note `mangle.properties` is `false` by default.
+        output: null,
+        toplevel: true,
+        nameCache: null,
+        ie8: false,
+        keep_fnames: false,
+      }
+    })]
+  },
   plugins: [
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery'
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor:{
-        warnings: false,
-        properties: true,
-        sequences: true,
-        dead_code: true,
-        conditionals: true,
-        comparisons: true,
-        evaluate: true,
-        booleans: true,
-        unused: true,
-        loops: true,
-        hoist_funs: true,
-        cascade: true,
-        if_return: true,
-        join_vars: true,
-        drop_debugger: true,
-        negate_iife: true,
-        unsafe: true,
-        hoist_vars: true
-      },
-      output: {
-        comments: false
-      }
     }),
     new webpack.DefinePlugin({
       'process.env':{
@@ -82,36 +76,35 @@ module.exports={
     },
     extensions: ['.js', '.jsx']
   },
-  module:{
-    loaders:[
-      {
+  module: {
+      rules: [{
         loader: 'babel-loader',
-        query:{
+        query: {
           presets: ['react', 'env', 'stage-0']
         },
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
       }, {
         test: /\.(s)?css$/,
-        use: [
-          {loader: 'style-loader'},
+        use: [{
+            loader: 'style-loader'
+          },
           {
             loader: 'css-loader',
             options: {
               sourceMap: true
             }
-          },{
+          }, {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
               includePaths: [
-                path.resolve(__dirname, './node_modules/bootstrap/scss'),
+                path.resolve(__dirname, './node_modules/bootstrap/scss')
               ]
             }
           }
         ]
-      }
-    ]
-  },
-  devtool: process.env.NODE_ENV === 'production' ? undefined : 'eval-source-map'
+      }]
+    },
+    devtool: process.env.NODE_ENV === 'production' ? undefined : 'eval-source-map'
 };

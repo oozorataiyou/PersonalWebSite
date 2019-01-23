@@ -8,8 +8,8 @@ export default class SchoolWrapper extends React.Component{
     var {id, cert, grade, logo, name, timeFrom, timeTo = 'current', subjects, ccas} = this.props;
     var renderDate = () =>{
       var dateFormat = "MMMM YYYY";
-      var strTimeTo = (timeTo == 'current') ? timeTo : moment(timeTo).format(dateFormat);
-      return `${moment(timeFrom).format(dateFormat)} - ${strTimeTo}`
+      var strTimeTo = (timeTo == 'current') ? timeTo : moment.unix(timeTo.seconds).format(dateFormat);
+      return `${moment.unix(timeFrom.seconds).format(dateFormat)} - ${strTimeTo}`
     }
     var renderSubjects = () =>{
       return (<SchoolSubject subjects={subjects} />)
