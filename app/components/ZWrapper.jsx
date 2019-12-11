@@ -2,10 +2,9 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faHome from '@fortawesome/fontawesome-pro-regular/faHome';
-import faGithub from '@fortawesome/fontawesome-free-brands/faGithub';
-import faLinkedin from '@fortawesome/fontawesome-free-brands/faLinkedin';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faHome} from '@fortawesome/pro-regular-svg-icons';
+import { faGithub, faLinkedin} from '@fortawesome/fontawesome-free-brands';
 
 export default class ZWrapper extends React.Component{
   PropTypes = {

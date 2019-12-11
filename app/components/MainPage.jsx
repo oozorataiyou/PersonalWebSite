@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DocumentMeta from 'react-document-meta';
 import { Parallax } from 'react-parallax';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment';
-import Typing from 'react-typing-animation';
+// import Typing from 'react-typing-animation';
 import {startGetSchools, startGetLanguages, startGetSkills, startGetCerts} from 'actions';
 
 import SchoolWrapper from 'app/components/main/SchoolWrapper';
@@ -12,17 +12,20 @@ import LanguageDetails from 'app/components/main/LanguageDetails';
 import SkillsDetails from 'app/components/main/SkillsDetails';
 import CertificationDetails from 'app/components/main/CertificationDetails';
 
-import faChevronDown from '@fortawesome/fontawesome-pro-regular/faChevronDown';
-import faSun from '@fortawesome/fontawesome-pro-regular/faSun';
-import faMoon from '@fortawesome/fontawesome-pro-regular/faMoon';
-import faGraduationCap from '@fortawesome/fontawesome-pro-solid/faGraduationCap';
-import faHandPaper from '@fortawesome/fontawesome-pro-solid/faHandPaper';
-import faCertificate from '@fortawesome/fontawesome-pro-solid/faCertificate';
-import faGlobe from '@fortawesome/fontawesome-pro-solid/faGlobe';
-
-import faMicrophoneAlt from '@fortawesome/fontawesome-pro-solid/faMicrophoneAlt';
-import faPencilAlt from '@fortawesome/fontawesome-pro-solid/faPencilAlt';
-import faVolumeUp from '@fortawesome/fontawesome-pro-solid/faVolumeUp';
+import { 
+  faChevronDown, 
+  faSun, 
+  faMoon
+} from '@fortawesome/pro-regular-svg-icons';
+import {
+  faGraduationCap,
+  faHandPaper,
+  faCertificate,
+  faGlobe,
+  faMicrophoneAlt,
+  faPencilAlt,
+  faVolumeUp
+} from '@fortawesome/pro-solid-svg-icons';
 
 export class MainPage extends React.Component{
   componentDidMount(){
@@ -198,7 +201,7 @@ export class MainPage extends React.Component{
             <div>
               <h1 className="neon">Hello</h1>
               <h2 className="neon">
-                <Typing loop={false} speed={100} startDelay={2000}>
+                {/* <Typing loop={false} speed={100} startDelay={2000}>
                   I'm Malcolm
                   <Typing.Delay ms={readingDelay} />
                   <Typing.Backspace count={7} />
@@ -212,8 +215,7 @@ export class MainPage extends React.Component{
                   <Typing.Delay ms={readingDelay} />
                   <Typing.Backspace count={14} />
                   Malcolm
-                  {/* <Typing.Reset count={4}/> */}
-                </Typing>
+                </Typing> */}
               </h2>
             </div>
             <a href="#intro">
