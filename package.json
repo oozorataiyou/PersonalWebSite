@@ -1,5 +1,5 @@
 {
-  "name": "PortfolioWebsite",
+  "name": "portfoliowebsite",
   "version": "1.0.0",
   "description": "Simple website for my portfolio",
   "main": "index.js",
@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-brands-svg-icons": "^5.12.0",
+    "@fortawesome/pro-duotone-svg-icons": "^5.12.0",
     "@fortawesome/pro-light-svg-icons": "^5.12.0",
     "@fortawesome/pro-regular-svg-icons": "^5.12.0",
     "@fortawesome/pro-solid-svg-icons": "^5.12.0",

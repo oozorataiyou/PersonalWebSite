@@ -8,5 +8,5 @@ if(process.env.NODE_ENV !== 'production') {
 }
 
 var fs = require('fs');
-fs.writeFileSync('.npmrc', '@fortawesome:registry=https://npm.fontawesome.com/${FORTAWESOME_TOKEN}');
+fs.writeFileSync('.npmrc', '@fortawesome:registry=https://npm.fontawesome.com/\r\n//npm.fontawesome.com/:_authToken=${FORTAWESOME_TOKEN}');
 fs.chmodSync('.npmrc', 0600);
