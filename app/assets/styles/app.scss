@@ -1,14 +1,9 @@
-//Global
-// @import "mixins";
-//
 @import "bootstrap";
-// @import "foundation";
-// @include foundation-everything;
-@import "animate.min.css";
+@import "~animate.css/source/_base.css";
+@import "~animate.css/source/attention_seekers/bounce.css";
 
 // functions
 @import "mixins";
-@import "functions";
 @import "fonts";
 
 // Components

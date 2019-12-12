@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faHome} from '@fortawesome/pro-regular-svg-icons';
+import { faHome } from '@fortawesome/pro-duotone-svg-icons';
 import { faGithub, faLinkedin} from '@fortawesome/fontawesome-free-brands';
 
 export default class ZWrapper extends React.Component{

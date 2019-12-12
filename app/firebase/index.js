@@ -1,5 +1,5 @@
-import firebase from 'firebase/app';
-require("firebase/firestore");
+import firebase from '@firebase/app';
+import '@firebase/firestore';
 
 try{
   var config = {
@@ -8,14 +8,11 @@ try{
     databaseURL: process.env.DATABASE_URL,
     projectId: process.env.PROJECT_ID,
     storageBucket: process.env.STORAGE_BUCKET,
-    messagingSenderId: process.env.MESSAGING_SENDER_ID,
-    timestampsInSnapshots: true
+    messagingSenderId: process.env.MESSAGING_SENDER_ID
   };
   firebase.initializeApp(config);
 }catch (e){
 
 }
-// export var githubProvider = new firebase.auth.GithubAuthProvider();
-// export var firebaseRef = firebase.database().ref();
 export var firebaseStore = firebase.firestore();
 export default firebase;

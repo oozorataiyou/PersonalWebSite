@@ -2,9 +2,6 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser')
 
-// get db jses
-// var dbUser = require('./api/user.jsx');
-
 //create our app server
 var app = express();
 app.set('port', (process.env.PORT || 5000));
@@ -33,10 +30,6 @@ app.use(function(req, res, next) {
 // public folder for the server
 app.use(express.static('public'));
 
-// check if app if url is looking for api
-// app.use('/email', email);
-//app.use('/api/user', dbUser);
-
 // check if the url is looking for images
 app.get(/\.(jpe?g|png|gif|svg|map)$/i, function(req, res){
   res.sendFile(path.resolve(__dirname, req.originalUrl));
@@ -46,10 +39,6 @@ app.get(/\.(jpe?g|png|gif|svg|map)$/i, function(req, res){
 app.get('/*', function(req, res){
   res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
 })
-
-function sendTo404(){
-  res.send('Error 404');
-}
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

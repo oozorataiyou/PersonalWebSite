@@ -4,7 +4,8 @@ import DocumentMeta from 'react-document-meta';
 import { Parallax } from 'react-parallax';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment';
-// import Typing from 'react-typing-animation';
+import Typed from 'react-typed';
+import 'react-typed/dist/animatedCursor.css';
 import {startGetSchools, startGetLanguages, startGetSkills, startGetCerts} from 'actions';
 
 import SchoolWrapper from 'app/components/main/SchoolWrapper';
@@ -12,20 +13,20 @@ import LanguageDetails from 'app/components/main/LanguageDetails';
 import SkillsDetails from 'app/components/main/SkillsDetails';
 import CertificationDetails from 'app/components/main/CertificationDetails';
 
-import { 
-  faChevronDown, 
-  faSun, 
-  faMoon
-} from '@fortawesome/pro-regular-svg-icons';
 import {
-  faGraduationCap,
   faHandPaper,
-  faCertificate,
-  faGlobe,
-  faMicrophoneAlt,
-  faPencilAlt,
-  faVolumeUp
 } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faCertificate,
+  faChevronDown,
+  faGlobe,
+  faGraduationCap,
+  faMicrophoneAlt,
+  faMoonStars,
+  faPencilAlt,
+  faSun,
+  faVolumeUp,
+} from '@fortawesome/pro-duotone-svg-icons';
 
 export class MainPage extends React.Component{
   componentDidMount(){
@@ -49,10 +50,6 @@ export class MainPage extends React.Component{
 
   render(){
     var {schools, languages, skills, certifications} = this.props;
-    var readingDelay = 3000;
-    var meta = {
-      title: "Home"
-    }
 
     var greeting = () =>{
       var hour = moment().hours();
@@ -67,16 +64,12 @@ export class MainPage extends React.Component{
 
     var greetingIcon = () =>{
       var hour = moment().hours();
-      return <FontAwesomeIcon icon={(hour >= 7 && hour <=18) ? faSun : faMoon} />
+      return <FontAwesomeIcon icon={(hour >= 7 && hour <= 18) ? faSun : faMoonStars} />
     }
 
-    var age = () =>{
-      return moment().diff('1993-09-22', 'years');
-    }
+    var age = () => moment().diff('1993-09-22', 'years');
 
-    var calculateProgress = (current, total) =>{
-      return current/total * 100;
-    }
+    var calculateProgress = (current, total) => current / total * 100;
 
     var renderSchools = () =>{
       if (schools.length == 0) {
@@ -195,27 +188,20 @@ export class MainPage extends React.Component{
     }
 
     return(
-      <DocumentMeta {...meta}>
+      <DocumentMeta title="Malcolm's Portfolio">
         <Parallax bgImage={'assets/images/bg/mainPage_01.jpg'} bgImageAlt="a moon" strength={500}>
           <div className="wholePageWithNav" style={{"color":"white", "textAlign":"center"}}>
             <div>
               <h1 className="neon">Hello</h1>
               <h2 className="neon">
-                {/* <Typing loop={false} speed={100} startDelay={2000}>
-                  I'm Malcolm
-                  <Typing.Delay ms={readingDelay} />
-                  <Typing.Backspace count={7} />
-                  {age()}
-                  <Typing.Delay ms={readingDelay} />
-                  <Typing.Backspace count={2} />
-                  a programmer
-                  <Typing.Delay ms={readingDelay} />
-                  <Typing.Backspace count={12} />
-                  a photographer
-                  <Typing.Delay ms={readingDelay} />
-                  <Typing.Backspace count={14} />
-                  Malcolm
-                </Typing> */}
+              <Typed strings={[
+                "I'm Malcolm",
+                "I'm a programmer",
+                "I'm a photographer",
+              ]} 
+              typeSpeed={100}
+              backSpeed={50}
+              loop />
               </h2>
             </div>
             <a href="#intro">
@@ -231,7 +217,7 @@ export class MainPage extends React.Component{
         <section id="intro" className="jumbotron jumbotron-fluid">
           <div className="container">
             <h1 className="display-4">{greetingIcon()} Good {greeting()}</h1>
-            <p className="lead">Hi, i'm Malcolm, as of today i'm {age()}. I have a passion for programming and photography. During the school holidays or breaks I enjoy picking up something new programming languages to broaden my knowledge.</p>
+            <p className="lead">Hi, I'm Malcolm, as of today I'm {age()}. I have a passion for programming and photography. During the school holidays or breaks I enjoy picking up something new like programming languages to broaden my knowledge.</p>
           </div>
         </section>
         {/* Education */}
@@ -284,9 +270,6 @@ export class MainPage extends React.Component{
             </div>
           </div>
         </div>
-        {/* <section className="pad container invisible">
-          <h1><FontAwesomeIcon icon={faHandPaper}/> Skills</h1>
-        </section> */}
       </DocumentMeta>
     )
   }
