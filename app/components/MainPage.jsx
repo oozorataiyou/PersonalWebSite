@@ -69,6 +69,8 @@ export class MainPage extends React.Component{
 
     var age = () => moment().diff('1993-09-22', 'years');
 
+    var scrollToIntro = () => document.querySelector("#intro").scrollIntoView({ behavior: "smooth" })
+
     var calculateProgress = (current, total) => current / total * 100;
 
     var renderSchools = () =>{
@@ -198,19 +200,19 @@ export class MainPage extends React.Component{
                 "I'm Malcolm",
                 "I'm a programmer",
                 "I'm a photographer",
-              ]} 
+              ]}
               typeSpeed={100}
               backSpeed={50}
               loop />
               </h2>
             </div>
-            <a href="#intro">
+            <button type="button" className="btn btn-link" onClick={() => scrollToIntro()}>
               <div className="showMore animated infinite bounce">
                 Show More
                 <br />
                 <FontAwesomeIcon icon={faChevronDown}/>
               </div>
-            </a>
+            </button>
           </div>
         </Parallax>
         {/* Self Intro */}

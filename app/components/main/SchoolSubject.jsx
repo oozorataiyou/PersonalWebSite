@@ -6,14 +6,12 @@ export class SchoolSubject extends React.Component{
   render(){
     var {subjects} = this.props;
 
-    var firstActive = (number) =>{
-      return (number == 1) ? "active" : "";
-    }
+    var firstActive = number => (number == 1) ? "active" : "";
 
     var renderList = () =>{
       var count = 0;
       return subjects.map((subject) =>{
-        return(<a className={`btn btn-primary ${firstActive(++count)}`} id="list-home-list" key={`${subject.id}_side`} data-toggle="list" href={`#${subject.id}`} role="tab" aria-controls="UOL Year 1">{subject.name}</a>)
+        return(<a className={`btn btn-primary mb-1 ${firstActive(++count)}`} id="list-home-list" key={`${subject.id}_side`} data-toggle="list" href={`#${subject.id}`} role="tab" aria-controls="UOL Year 1">{subject.name}</a>)
       })
     }
     var renderGradesContainer = () =>{
