@@ -3,12 +3,12 @@ import * as rConst from "reduxConstants";
 export const schoolsReducer = (state = [], action) =>{
   switch (action.type) {
     case rConst.ADD_SCHOOL:
-      var school = (state.school !== undefined) ? state.school : [];
+      var school = (state.data !== undefined) ? state.data : [];
       school.push(action.school);
       return {
         ...state,
         isLoading: false,
-        school
+        data: school
       }
     case rConst.LOADING_SCHOOL:
       return {
@@ -30,7 +30,7 @@ export const languagesReducer = (state = [], action) =>{
       return {
         ...state,
         isLoading: false,
-        languages: action.languages
+        data: action.languages
       }
     case rConst.LOADING_LANGUAGE:
       return {
@@ -52,7 +52,7 @@ export const skillsReducer = (state = [], action) =>{
       return {
         ...state,
         isLoading: false,
-        skills: action.skills
+        data: action.skills
       }
     case rConst.LOADING_SKILL:
       return {
@@ -74,7 +74,7 @@ export const certificationsReducer = (state = [], action) =>{
       return {
         ...state,
         isLoading: false,
-        cert: action.cert
+        data: action.cert
       }
     case rConst.LOADING_CERTIFICATION:
       return {

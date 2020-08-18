@@ -1,59 +1,53 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import moment from 'moment';
 
-export class SchoolSubject extends React.Component{
-  render(){
-    var {subjects} = this.props;
+const SchoolSubject = ({
+  id,
+  school,
+  subjects,
+}) =>{
+  let firstActive = number => (number == 1) ? "active" : "";
 
-    var firstActive = number => (number == 1) ? "active" : "";
+  const renderList = () => {
+    let count = 0;
+    return subjects.map(subject => (
+      <a className={`btn btn-primary mb-1 ${firstActive(++count)}`} id="list-home-list" key={`${subject.id}_side`} data-toggle="list" href={`#${subject.id}`} role="tab" aria-controls={`${school} ${subject.name}`}>{subject.name}</a>
+    ))
+  }
+  const renderGradesContainer = () => {
+    let count = 0;
+    return subjects.map(subject => (
+      <div className={`tab-pane fade show ${firstActive(++count)}`} id={subject.id} key={`${subject.id}_grades`} role="tabpanel" aria-labelledby={`${school} ${subject.name} grades`}>
+        <ul className="list-group">
+          {renderGrades(subject.subjects)}
+        </ul>
+      </div>
+    ))
+  }
+  const renderGrades = subjects => {
+    return subjects.map(subject => (
+      <li className="list-group-item d-flex justify-content-between align-items-center" key={`${id}_${subject.name}`}>
+        {subject.name}
+        <span className="badge badge-primary badge-pill">{(subject.grade == "NC") ? "Not Completed Yet" : subject.grade}</span>
+      </li>
+    ))
+  }
 
-    var renderList = () =>{
-      var count = 0;
-      return subjects.map((subject) =>{
-        return(<a className={`btn btn-primary mb-1 ${firstActive(++count)}`} id="list-home-list" key={`${subject.id}_side`} data-toggle="list" href={`#${subject.id}`} role="tab" aria-controls="UOL Year 1">{subject.name}</a>)
-      })
-    }
-    var renderGradesContainer = () =>{
-      var count = 0;
-      return subjects.map((subject) =>{
-        return(
-          <div className={`tab-pane fade show ${firstActive(++count)}`} id={subject.id} key={`${subject.id}_grades`} role="tabpanel" aria-labelledby="UOLY1">
-            <ul className="list-group">
-              {renderGrades(subject.subjects)}
-            </ul>
-          </div>
-        )
-      })
-    }
-    var renderGrades = (subjects) =>{
-      return subjects.map((subject) =>{
-        return(
-          <li className="list-group-item d-flex justify-content-between align-items-center" key={subject.name}>
-            {subject.name}
-            <span className="badge badge-primary badge-pill">{(subject.grade == "NC") ? "Not Completed Yet" : subject.grade}</span>
-          </li>
-        )
-      })
-    }
-
-    return(
-      <details>
-        <summary>Subjects</summary>
-        <div className="row">
-          <div className="col-4">
-            <div className="list-group" id="UOLContent" role="tablist">
-              {renderList()}
-            </div>
-          </div>
-          <div className="col-8">
-            <div className="tab-content" id="nav-tabContent">
-              {renderGradesContainer()}
-            </div>
+  return (
+    <details>
+      <summary>Subjects</summary>
+      <div className="row">
+        <div className="col-4">
+          <div className="list-group" id={id} role="tablist">
+            {renderList()}
           </div>
         </div>
-      </details>
-    )
-  }
+        <div className="col-8">
+          <div className="tab-content" id={`${id}-tabContent`}>
+            {renderGradesContainer()}
+          </div>
+        </div>
+      </div>
+    </details>
+  )
 }
 export default SchoolSubject;
