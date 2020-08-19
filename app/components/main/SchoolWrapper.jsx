@@ -1,7 +1,9 @@
 import React from 'react';
 import moment from 'moment';
+
 import SchoolSubject from 'app/components/main/SchoolSubject';
 import SchoolCCA from 'app/components/main/SchoolCCA';
+import { themes, useTheme } from 'app/theme';
 
 const SchoolWrapper = ({
   details: {
@@ -15,7 +17,9 @@ const SchoolWrapper = ({
     subjects,
     ccas,
   }
-}) =>{
+}) => {
+  const [theme] = useTheme()
+  const currentTheme = themes[theme]
   const renderDate = () => {
     let dateFormat = "MMMM YYYY";
     let strTimeTo = (timeTo == 'current') ? timeTo : moment.unix(timeTo.seconds).format(dateFormat);
@@ -25,7 +29,7 @@ const SchoolWrapper = ({
   const renderCCA = () => (ccas.length >= 1) ? <SchoolCCA ccas={ccas} /> : <p className="d-none" />
 
   return (
-    <div className="list-group-item flex-column align-items-start">
+    <div className={`list-group-item flex-column align-items-start ${currentTheme.bg} ${currentTheme.border}`}>
       <div className="row">
         <div className="col-xl-1 col-lg-2 col-md-3 col-sm-4 col-12">
           <img src={logo} alt={`${name} logo`} className="img-thumbnail rounded float-left mr-3 schoolLogo" />

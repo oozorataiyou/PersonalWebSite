@@ -15,6 +15,8 @@
 // Variables
 $navHeight: 56px;
 $secondary-lighter: #ddd;
+$light-active: darken($light, 10%);
+$dark-active: lighten($dark, 10%);
 
 body, html{
   font-family: $font_normal;
@@ -26,9 +28,6 @@ ul.list-unstyled{
 }
 .pad-away-from-nav{
   padding-top: $navHeight;
-}
-.pad{
-  padding: 20px 0 20px 0;
 }
 
 .bg-secondarylighter{
@@ -55,4 +54,27 @@ ul.list-unstyled{
   @extend .maxWidthPage;
   position: relative;
   padding: 64px 0 20px 0;
+}
+
+.theme-dropdown-item{
+  @extend .dropdown-item;
+
+  cursor: pointer;
+
+  &.dark{
+    @extend .text-white;
+    &.active, &:hover{
+      background-color: $dark-active;
+    }
+  }
+  &.light{
+    @extend .text-dark;
+    &.active, &:hover{
+      background-color: $light-active;
+    }
+  }
+}
+
+.border-default{
+  border-color: rgba(0, 0, 0, 0.125);
 }

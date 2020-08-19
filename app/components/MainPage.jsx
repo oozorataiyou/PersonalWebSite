@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import DocumentMeta from 'react-document-meta';
 import { Parallax } from 'react-parallax';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment';
@@ -13,6 +12,7 @@ import LanguageDetails from 'app/components/main/LanguageDetails';
 import SkillsDetails from 'app/components/main/SkillsDetails';
 import CertificationDetails from 'app/components/main/CertificationDetails';
 
+import { themes, useTheme } from 'app/theme'
 import LoadingPlaceholder from 'app/components/LoadingPlaceholder';
 
 const MainPage = ({
@@ -23,6 +23,9 @@ const MainPage = ({
   certifications
 }) =>{
   const [sentDispatch, setSentDispatch] = useState(false);
+  const [theme] = useTheme()
+  const currentTheme = themes[theme]
+
   useEffect(() =>{
     if(sentDispatch === false){ // ensure dispatch is sent only once
       dispatch(startGetSchools());
@@ -62,7 +65,7 @@ const MainPage = ({
   const LanguagesLoader = LoadingPlaceholder(languages, true, "tr")(LanguageDetails)
 
   return (
-    <DocumentMeta title="Malcolm's Portfolio">
+    <React.Fragment>
       <Parallax bgImage={'assets/images/bg/mainPage_01.jpg'} bgImageAlt="a moon" strength={500}>
         <div className="wholePageWithNav" style={{ "color": "white", "textAlign": "center" }}>
           <div>
@@ -78,8 +81,8 @@ const MainPage = ({
                 loop />
             </h2>
           </div>
-          <button type="button" className="btn btn-link" onClick={() => scrollToIntro()}>
-            <div className="showMore animated infinite bounce">
+          <button type="button" className="btn btn-link showMore" onClick={() => scrollToIntro()}>
+            <div className="animated infinite bounce">
               Show More
                 <br />
               <FontAwesomeIcon icon={['fad', 'chevron-down']} />
@@ -95,14 +98,14 @@ const MainPage = ({
         </div>
       </section>
       {/* Education */}
-      <section id="education" className="pad container">
+      <section id="education" className={`py-5 container ${currentTheme.bg} ${currentTheme.text}`}>
         <h1><FontAwesomeIcon icon={['fad', 'graduation-cap']} /> Education</h1>
         <div className="list-group list-group-flush">
           <SchoolsLoader />
         </div>
       </section>
       {/* Skills */}
-      <div id="skills" className="pad container-fluid bg-light">
+      <div id="skills" className="py-5 container-fluid bg-light">
         <div className="container">
           <div className="row">
             <section className="col-md-6 col-sm-12">
@@ -144,7 +147,7 @@ const MainPage = ({
           </div>
         </div>
       </div>
-    </DocumentMeta>
+    </React.Fragment>
   )
 }
 
@@ -153,6 +156,7 @@ export default connect((state)=>{
     schools: state.schoolsReducer,
     languages: state.languagesReducer,
     skills: state.skillsReducer,
-    certifications: state.certificationsReducer
+    certifications: state.certificationsReducer,
+    theme: state.themeReducer,
   }
 })(MainPage);

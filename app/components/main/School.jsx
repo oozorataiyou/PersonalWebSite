@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { themes, useTheme } from 'app/theme';
 import SchoolWrapper from 'app/components/main/SchoolWrapper';
 
 const School = ({
   dataReducer,
-})=>{
+}) => {
+  const [theme] = useTheme()
+  const currentTheme = themes[theme]
   const [hideExtraRows, setHideExtraRows] = useState(true)
 
   const renderSchoolsRows = () =>{
@@ -37,7 +40,7 @@ const School = ({
   return(
     <React.Fragment>
       {renderSchoolsRows()}
-      <div className="list-group-item flex-column align-items-start">
+      <div className={`list-group-item flex-column align-items-start ${currentTheme.bg}`}>
         <div className="row">
           <div className="col-12">
             <button type="button" className="btn btn-outline-primary btn-block" onClick={() => setHideExtraRows(!hideExtraRows)}>{renderButtonText()}</button>

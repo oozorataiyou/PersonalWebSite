@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 // Personal Modules
 // import {startGetUserSession} from 'app/actions/account'
 import Router from 'app/router/';
+import { ThemeProvider } from 'app/theme'
 
 //App CSS
 require('app/fontawesome/')
@@ -18,7 +19,9 @@ var store = configure();
 //render
 ReactDOM.render(
   <Provider store={store}>
-    {Router}
+    <ThemeProvider>
+      {Router}
+    </ThemeProvider>
   </Provider>,
   document.getElementById('app')
 );
