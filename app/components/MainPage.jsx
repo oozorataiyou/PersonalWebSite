@@ -8,27 +8,12 @@ import Typed from 'react-typed';
 import 'react-typed/dist/animatedCursor.css';
 import {startGetSchools, startGetLanguages, startGetSkills, startGetCerts} from 'actions';
 
-import SchoolWrapper from 'app/components/main/SchoolWrapper';
+import School from 'app/components/main/School';
 import LanguageDetails from 'app/components/main/LanguageDetails';
 import SkillsDetails from 'app/components/main/SkillsDetails';
 import CertificationDetails from 'app/components/main/CertificationDetails';
 
 import LoadingPlaceholder from 'app/components/LoadingPlaceholder';
-
-import {
-  faHandPaper,
-} from '@fortawesome/pro-solid-svg-icons';
-import {
-  faCertificate,
-  faChevronDown,
-  faGlobe,
-  faGraduationCap,
-  faMicrophoneAlt,
-  faMoonStars,
-  faPencilAlt,
-  faSun,
-  faVolumeUp,
-} from '@fortawesome/pro-duotone-svg-icons';
 
 const MainPage = ({
   dispatch,
@@ -66,15 +51,15 @@ const MainPage = ({
   }
   const greetingIcon = () => {
     let hour = moment().hours();
-    return <FontAwesomeIcon icon={(hour >= 7 && hour <= 18) ? faSun : faMoonStars} />
+    return <FontAwesomeIcon icon={['fad', (hour >= 7 && hour <= 18) ? 'sun' : 'moon-stars']} />
   }
   const age = () => moment().diff('1993-09-22', 'years');
   const scrollToIntro = () => document.querySelector("#intro").scrollIntoView({ behavior: "smooth" })
 
-  const SchoolsLoader = LoadingPlaceholder(schools)(SchoolWrapper)
+  const SchoolsLoader = LoadingPlaceholder(schools, false)(School)
   const SkillsLoader = LoadingPlaceholder(skills)(SkillsDetails)
   const CertificationLoader = LoadingPlaceholder(certifications)(CertificationDetails)
-  const LanguagesLoader = LoadingPlaceholder(languages, "tr")(LanguageDetails)
+  const LanguagesLoader = LoadingPlaceholder(languages, true, "tr")(LanguageDetails)
 
   return (
     <DocumentMeta title="Malcolm's Portfolio">
@@ -97,7 +82,7 @@ const MainPage = ({
             <div className="showMore animated infinite bounce">
               Show More
                 <br />
-              <FontAwesomeIcon icon={faChevronDown} />
+              <FontAwesomeIcon icon={['fad', 'chevron-down']} />
             </div>
           </button>
         </div>
@@ -111,7 +96,7 @@ const MainPage = ({
       </section>
       {/* Education */}
       <section id="education" className="pad container">
-        <h1><FontAwesomeIcon icon={faGraduationCap} /> Education</h1>
+        <h1><FontAwesomeIcon icon={['fad', 'graduation-cap']} /> Education</h1>
         <div className="list-group list-group-flush">
           <SchoolsLoader />
         </div>
@@ -121,33 +106,33 @@ const MainPage = ({
         <div className="container">
           <div className="row">
             <section className="col-md-6 col-sm-12">
-              <h1><FontAwesomeIcon icon={faHandPaper} /> Skills</h1>
+              <h1><FontAwesomeIcon icon={['fas', 'hand-paper']} /> Skills</h1>
               <SkillsLoader />
               <div>
                 <h3>Legend</h3>
                 <span className="badge badge-pill badge-danger mr-3 mb-2 pill-skill" data-toggle="tooltip" data-placement="top" title="Proficiency: 1-4">Basics</span>
-                <span className="badge badge-pill badge-warning mr-3 mb-2 pill-skill" data-toggle="tooltip" data-placement="top" title="Proficiency: 5-7">Still ok</span>
+                <span className="badge badge-pill badge-warning mr-3 mb-2 pill-skill" data-toggle="tooltip" data-placement="top" title="Proficiency: 5-7">Average</span>
                 <span className="badge badge-pill badge-success mr-3 mb-2 pill-skill" data-toggle="tooltip" data-placement="top" title="Proficiency: 8-10">Proficient</span>
               </div>
             </section>
             <div className="col-md-6 col-sm-12">
               {/* Certifications */}
               <section id="certs">
-                <h1><FontAwesomeIcon icon={faCertificate} /> Certifications</h1>
+                <h1><FontAwesomeIcon icon={['fad', 'certificate']} /> Certifications</h1>
                 <ul className="list-group">
                   <CertificationLoader />
                 </ul>
               </section>
               {/* Language */}
               <section id="languages" className="mt-3">
-                <h1><FontAwesomeIcon icon={faGlobe} /> Language</h1>
+                <h1><FontAwesomeIcon icon={['fad', 'globe']} /> Language</h1>
                 <table className="table table-hover maxWidthPage">
                   <thead>
                     <tr>
                       <th scope="col"></th>
-                      <th scope="col"><FontAwesomeIcon icon={faMicrophoneAlt} data-toggle="tooltip" data-placement="top" title="Speak" /></th>
-                      <th scope="col"><FontAwesomeIcon icon={faPencilAlt} data-toggle="tooltip" data-placement="top" title="Write" /></th>
-                      <th scope="col"><FontAwesomeIcon icon={faVolumeUp} data-toggle="tooltip" data-placement="top" title="Listen" /></th>
+                      <th scope="col"><FontAwesomeIcon icon={['fad', 'microphone-alt']} data-toggle="tooltip" data-placement="top" title="Speak" /></th>
+                      <th scope="col"><FontAwesomeIcon icon={['fad', 'pencil-alt']} data-toggle="tooltip" data-placement="top" title="Write" /></th>
+                      <th scope="col"><FontAwesomeIcon icon={['fad', 'volume-up']} data-toggle="tooltip" data-placement="top" title="Listen" /></th>
                     </tr>
                   </thead>
                   <tbody>

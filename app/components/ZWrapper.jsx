@@ -14,7 +14,7 @@ export default class ZWrapper extends React.Component{
   render(){
     return(
       <div>
-        <nav className="navbar fixed-top navbar-expand-md navbar-light bg-light">
+        <nav className="navbar navbar-expand-md navbar-light bg-light">
           <Link className="navbar-brand" to="/">太陽</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -36,7 +36,6 @@ export default class ZWrapper extends React.Component{
             </ul>
           </div>
         </nav>
-        <div className="pad-away-from-nav" />
         {this.props.children}
       </div>
     )

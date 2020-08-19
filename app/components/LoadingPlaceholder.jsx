@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoadingPlaceholder = (dataReducer, embed = false) => WrappedComponent =>{
+const LoadingPlaceholder = (dataReducer, loopData = true, embed = false) => WrappedComponent =>{
   const LoadingPlaceholderClass = () =>{
     const calculateProgress = (current, total) => current / total * 100;
     const progressBar = width =>(
@@ -46,9 +46,11 @@ const LoadingPlaceholder = (dataReducer, embed = false) => WrappedComponent =>{
           let width = calculateProgress(dataReducer.data.length, dataReducer.size);
           return progressBarView(width)
         } else {
-          return dataReducer.data.map(dataRow => {
-            return (<WrappedComponent key={dataRow.id} details={dataRow} />)
-          })
+          if (loopData === true){
+            return dataReducer.data.map(dataRow => <WrappedComponent key={dataRow.id} details={dataRow} />)
+          }else{
+            return <WrappedComponent {...{dataReducer}} />
+          }
         }
       } else {
         return progressBarView(0)

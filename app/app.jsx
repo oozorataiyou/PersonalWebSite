@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import Router from 'app/router/';
 
 //App CSS
+require('app/fontawesome/')
 require('applicationStyles');
 
 // For react-redux
