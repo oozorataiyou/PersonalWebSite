@@ -12,8 +12,9 @@ import LanguageDetails from 'app/components/main/LanguageDetails';
 import SkillsDetails from 'app/components/main/SkillsDetails';
 import CertificationDetails from 'app/components/main/CertificationDetails';
 
-import { themes, useTheme } from 'app/theme'
+import { themes, useTheme } from 'app/theme';
 import LoadingPlaceholder from 'app/components/LoadingPlaceholder';
+import Table from 'app/components/theme/Table';
 
 const MainPage = ({
   dispatch,
@@ -28,6 +29,7 @@ const MainPage = ({
 
   useEffect(() =>{
     if(sentDispatch === false){ // ensure dispatch is sent only once
+      window.addEventListener('load', scriptForBootstrap());
       dispatch(startGetSchools());
       dispatch(startGetLanguages());
       dispatch(startGetSkills());
@@ -43,7 +45,7 @@ const MainPage = ({
     });
   }
   const greeting = () => {
-    var hour = moment().hours();
+    let hour = moment().hours();
     if (hour >= 12 && hour < 18) {
       return "Afternoon";
     } else if (hour >= 18 && hour <= 24) {
@@ -51,6 +53,10 @@ const MainPage = ({
     } else {
       return "Morning";
     }
+  }
+  const parallaxBg = () =>{
+    let hour = moment().hours();
+    return (hour >= 17 && hour < 20) ? "evening" : theme;
   }
   const greetingIcon = () => {
     let hour = moment().hours();
@@ -66,8 +72,8 @@ const MainPage = ({
 
   return (
     <React.Fragment>
-      <Parallax bgImage={'assets/images/bg/mainPage_01.jpg'} bgImageAlt="a moon" strength={500}>
-        <div className="wholePageWithNav" style={{ "color": "white", "textAlign": "center" }}>
+      <Parallax bgImage={`/assets/images/bg/mainpage_${parallaxBg()}.png`} bgImageAlt="a moon" strength={500}>
+        <div className="wholePageWithNav d-flex justify-content-between flex-column p-3" style={{ "color": "white", "textAlign": "center" }}>
           <div>
             <h1 className="neon">Hello</h1>
             <h2 className="neon">
@@ -91,7 +97,7 @@ const MainPage = ({
         </div>
       </Parallax>
       {/* Self Intro */}
-      <section id="intro" className="jumbotron jumbotron-fluid">
+      <section id="intro" className={`jumbotron jumbotron-fluid mb-0 ${currentTheme.jumbotron} ${currentTheme.text}`}>
         <div className="container">
           <h1 className="display-4">{greetingIcon()} Good {greeting()}</h1>
           <p className="lead">Hi, I'm Malcolm, as of today I'm {age()}. I have a passion for programming and photography. During the school holidays or breaks I enjoy picking up something new like programming languages to broaden my knowledge.</p>
@@ -105,7 +111,7 @@ const MainPage = ({
         </div>
       </section>
       {/* Skills */}
-      <div id="skills" className="py-5 container-fluid bg-light">
+      <div id="skills" className={`py-5 container-fluid ${currentTheme.secondary} ${currentTheme.text}`}>
         <div className="container">
           <div className="row">
             <section className="col-md-6 col-sm-12">
@@ -129,7 +135,7 @@ const MainPage = ({
               {/* Language */}
               <section id="languages" className="mt-3">
                 <h1><FontAwesomeIcon icon={['fad', 'globe']} /> Language</h1>
-                <table className="table table-hover maxWidthPage">
+                <Table classes="table-hover w-100">
                   <thead>
                     <tr>
                       <th scope="col"></th>
@@ -141,7 +147,7 @@ const MainPage = ({
                   <tbody>
                     <LanguagesLoader />
                   </tbody>
-                </table>
+                </Table>
               </section>
             </div>
           </div>

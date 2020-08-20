@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 
+import ListGroupItem from 'app/components/theme/ListGroupItem';
+
 const CertificationDetails = ({
   details: {
     name,
@@ -13,10 +15,10 @@ const CertificationDetails = ({
   }
 
   return (
-    <li className="list-group-item">
+    <ListGroupItem>
       {name}
       {renderDate()}
-    </li>
+    </ListGroupItem>
   )
 }
 

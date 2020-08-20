@@ -43,7 +43,7 @@ const School = ({
       <div className={`list-group-item flex-column align-items-start ${currentTheme.bg}`}>
         <div className="row">
           <div className="col-12">
-            <button type="button" className="btn btn-outline-primary btn-block" onClick={() => setHideExtraRows(!hideExtraRows)}>{renderButtonText()}</button>
+            <button type="button" className="btn btn-outline-primary btn-block stretched-link" onClick={() => setHideExtraRows(!hideExtraRows)}>{renderButtonText()}</button>
           </div>
         </div>
       </div>

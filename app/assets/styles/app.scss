@@ -47,13 +47,11 @@ ul.list-unstyled{
   @extend .maxHeightPage;
   @extend .maxWidthPage;
   position: relative;
-  padding: 64px 0 20px 0;
 }
 .wholePageWithNav{
   @extend .maxHeightPageWithNav;
   @extend .maxWidthPage;
   position: relative;
-  padding: 64px 0 20px 0;
 }
 
 .theme-dropdown-item{

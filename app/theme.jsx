@@ -36,16 +36,28 @@ const setLocalStorageThemeType = theme => {
 
 export const themes ={
   light:{
-    nav: 'navbar-light',
     bg: 'bg-white',
+    border: 'border-default',
+    card: 'bg-white',
+    jumbotron: 'bg-light',
+    listGroupItem: '',
+    nav: 'navbar-light',
+    navBg: 'bg-light',
+    secondary: 'bg-light',
+    table: '',
     text: 'text-dark',
-    border: 'border-default'
   },
   dark: {
-    nav: 'navbar-dark',
     bg: 'bg-dark',
+    border: 'border-light',
+    card: 'bg-secondary',
+    jumbotron: 'bg-secondary',
+    listGroupItem: 'list-group-item-dark',
+    nav: 'navbar-dark',
+    navBg: 'bg-dark',
+    secondary: 'bg-secondary',
+    table: 'table-dark',
     text: 'text-white',
-    border: 'border-light'
   }
 }
 
@@ -56,7 +68,6 @@ export const ThemeProvider = ({ children }) => {
   const [type, setType] = useState(null)
 
   const updateTheme = useCallback(newTheme => {
-    console.log("theme changed", newTheme, getLocalStorageThemeType())
     if (getLocalStorageThemeType() == 'system') {
       setTheme(newTheme)
     }
@@ -64,7 +75,6 @@ export const ThemeProvider = ({ children }) => {
   )
 
   const updateType = useCallback(newType => {
-    console.log("updateType", newType)
     if (newType == 'system') {
       setTheme(getBrowserTheme())
     } else {
@@ -75,7 +85,6 @@ export const ThemeProvider = ({ children }) => {
   }, [setType])
 
   useEffect(() => {
-    console.log("useEffect")
     if (type === null) {
       if (getLocalStorageThemeType()){
         updateType(getLocalStorageThemeType())

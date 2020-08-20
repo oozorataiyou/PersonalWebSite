@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ListGroupItem from 'app/components/theme/ListGroupItem';
+
 const SchoolSubject = ({
   id,
   school,
@@ -25,10 +27,10 @@ const SchoolSubject = ({
   }
   const renderGrades = subjects => {
     return subjects.map(subject => (
-      <li className="list-group-item d-flex justify-content-between align-items-center" key={`${id}_${subject.name}`}>
+      <ListGroupItem classes="d-flex justify-content-between align-items-center" key={`${id}_${subject.name}`}>
         {subject.name}
         <span className="badge badge-primary badge-pill">{(subject.grade == "NC") ? "Not Completed Yet" : subject.grade}</span>
-      </li>
+      </ListGroupItem>
     ))
   }
 

@@ -11,8 +11,8 @@ h1.neon {
   font-size: 70px;
   padding: 0;
   font-family: $font_cursive;
-  color: $blue;
-  @include textShadow(#228DFF);
+  color: $green;
+  @include textShadow($green-glow);
   position: relative;
   z-index: 5;
 }
@@ -30,9 +30,6 @@ h2.neon {
 }
 
 button.showMore{
-  position: absolute;
-  bottom: 48px;
-  left: calc(50% - 41px);
   color: white;
 
   &:hover, &:visited{
