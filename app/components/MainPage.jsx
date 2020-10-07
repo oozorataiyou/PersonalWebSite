@@ -56,7 +56,11 @@ const MainPage = ({
   }
   const parallaxBg = () =>{
     let hour = moment().hours();
-    return (hour >= 17 && hour < 20) ? "evening" : theme;
+    switch ((hour >= 17 && hour < 20) ? "evening" : theme){
+      case "light": return "v1602031709/portfolio/mainpage_light_t3blhz"
+      case "dark": return "v1602031717/portfolio/mainpage_dark_mrdxit"
+      default: return "v1602031718/portfolio/mainpage_evening_jc9cen"
+    }
   }
   const greetingIcon = () => {
     let hour = moment().hours();
@@ -72,7 +76,7 @@ const MainPage = ({
 
   return (
     <React.Fragment>
-      <Parallax bgImage={`/assets/images/bg/mainpage_${parallaxBg()}.png`} bgImageAlt="a moon" strength={500}>
+      <Parallax bgImage={`https://res.cloudinary.com/malcolmchew/image/upload/${parallaxBg()}.png`} bgImageAlt="a moon" strength={500}>
         <div className="wholePageWithNav d-flex justify-content-between flex-column p-3" style={{ "color": "white", "textAlign": "center" }}>
           <div>
             <h1 className="neon">Hello</h1>

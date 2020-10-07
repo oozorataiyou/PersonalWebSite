@@ -1,8 +1,10 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 import {
-  faAppStore
-} from '@fortawesome/fontawesome-free-brands'
+  faAppStoreIos,
+  faGithub,
+  faLinkedin,
+} from '@fortawesome/free-brands-svg-icons'
 
 import {
   faBriefcase,
@@ -27,7 +29,9 @@ import {
 
 // fab
 library.add(
-  faAppStore
+  faAppStoreIos,
+  faGithub,
+  faLinkedin,
 )
 
 // fas

@@ -15,7 +15,6 @@ module.exports = {
   entry: {
     jquery: "script-loader!jquery/dist/jquery.min.js",
     bootstrap: "script-loader!bootstrap/dist/js/bootstrap.bundle.min.js",
-    polyfill: '@babel/polyfill',
     main: "./app/app.jsx",
   },
   externals: {

@@ -4,3 +4,4 @@ public/dist/
 public/index.html
 public/bundle.js
 config/
+tmp/
