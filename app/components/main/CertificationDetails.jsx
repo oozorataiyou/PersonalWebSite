@@ -9,11 +9,7 @@ const CertificationDetails = ({
     date,
   }
 }) =>{
-  const renderDate = () => {
-    let dateFormat = "MMMM YYYY";
-    console.log("name", date)
-    return (!date) ? "" : <div><small className="text-muted">{moment(date.toMillis()).format(dateFormat)}</small></div>;
-  }
+  const renderDate = () => (!date) ? "" : <div><small className="text-muted">{moment(date.toMillis()).format("MMMM YYYY")}</small></div>;
 
   return (
     <ListGroupItem>

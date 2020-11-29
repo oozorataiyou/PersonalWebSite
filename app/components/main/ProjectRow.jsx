@@ -9,6 +9,7 @@ const ProjectRow = ({
     desc,
     name,
     links,
+    languages,
   }
 }) => {
   const [theme] = useTheme()
@@ -44,13 +45,15 @@ const ProjectRow = ({
   }
 
   const createLinkButton = (urlName, url, key) => (
-    <li key={`${name}_${key}`}>
+    <li key={`${id}_${key}`}>
       <span className="fa-li">
         {getIcon(urlName)}
       </span>
       <a href={url} target="_blank">{urlName}</a>
     </li>
   )
+
+  const createLanguagePill = language => <span key={`${id}_${language}`} className="mr-2 badge badge-pill badge-primary">{language}</span>
 
   return (
     <div className={`list-group-item flex-column align-items-start ${currentTheme.bg} ${currentTheme.border}`}>
@@ -60,6 +63,9 @@ const ProjectRow = ({
             <h5 className="mb-1">{name}</h5>
           </div>
           <p className="mb-1">{desc}</p>
+          <div>
+            {languages.map(language => createLanguagePill(language))}
+          </div>
           <details>
             <summary>Links</summary>
             <ul className="fa-ul">

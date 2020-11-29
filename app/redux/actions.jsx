@@ -210,8 +210,7 @@ export const gotProjectTotal = (number) => {
 export var startGetProjects = () => {
   return (dispatch, getState) => {
     dispatch(loadingProject());
-    var projectRef = firebaseStore.collection("projects")
-    // .orderBy('last Updated', 'desc');
+    var projectRef = firebaseStore.collection("projects").orderBy('last Updated', 'desc');
 
     return projectRef.get().then((snapshot) => {
       var projects = [];
