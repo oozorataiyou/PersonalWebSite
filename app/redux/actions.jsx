@@ -185,3 +185,46 @@ export var startGetCerts = () =>{
     })
   }
 }
+
+
+export const addProjects = (projects) => {
+  return {
+    type: rConst.ADD_PROJECTS,
+    projects
+  }
+}
+
+export const loadingProject = () => {
+  return {
+    type: rConst.LOADING_PROJECT
+  }
+}
+
+export const gotProjectTotal = (number) => {
+  return {
+    type: rConst.GOT_PROJECTS_TOTAL,
+    number
+  }
+}
+
+export var startGetProjects = () => {
+  return (dispatch, getState) => {
+    dispatch(loadingProject());
+    var projectRef = firebaseStore.collection("projects")
+    // .orderBy('last Updated', 'desc');
+
+    return projectRef.get().then((snapshot) => {
+      var projects = [];
+      dispatch(gotProjectTotal(snapshot.size));
+
+      snapshot.forEach((project) => {
+        projects.push({
+          id: project.id,
+          ...project.data()
+        })
+      });
+
+      dispatch(addProjects(projects));
+    })
+  }
+}

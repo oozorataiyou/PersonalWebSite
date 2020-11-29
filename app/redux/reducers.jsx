@@ -89,3 +89,25 @@ export const certificationsReducer = (state = [], action) =>{
     default: return state;
   }
 }
+
+export const projectsReducer = (state = [], action) => {
+  switch (action.type) {
+    case rConst.ADD_PROJECTS:
+      return {
+        ...state,
+        isLoading: false,
+        data: action.projects
+      }
+    case rConst.LOADING_PROJECT:
+      return {
+        ...state,
+        isLoading: true
+      }
+    case rConst.GOT_PROJECTS_TOTAL:
+      return {
+        ...state,
+        size: action.number
+      }
+    default: return state;
+  }
+}

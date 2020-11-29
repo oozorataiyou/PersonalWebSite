@@ -30,12 +30,6 @@ const ZWrapper = ({children}) =>{
             </li>
           </ul>
           <ul className="navbar-nav">
-            {/* <li className="nav-item">
-              <a href="https://github.com/taiyoOzora/PersonalWebSite" target="_blank" className="nav-link"><FontAwesomeIcon icon={faGithub} /></a>
-            </li>
-            <li className="nav-item">
-              <a href="https://www.linkedin.com/in/malcolmchew" target="_blank" className="nav-link"><FontAwesomeIcon icon={faLinkedin} /></a>
-            </li> */}
             <li className="nav-item">
               <a href="mailto:malcolmchew1993@gmail.com" target="_blank" className="nav-link">
                 <span className="fa-layers fa-fw">

@@ -11,7 +11,8 @@ const CertificationDetails = ({
 }) =>{
   const renderDate = () => {
     let dateFormat = "MMMM YYYY";
-    return (date == 'none') ? "" : <div><small className="text-muted">{moment(date).format(dateFormat)}</small></div>;
+    console.log("name", date)
+    return (!date) ? "" : <div><small className="text-muted">{moment(date.toMillis()).format(dateFormat)}</small></div>;
   }
 
   return (

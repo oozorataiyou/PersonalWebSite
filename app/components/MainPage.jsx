@@ -5,12 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment';
 import Typed from 'react-typed';
 import 'react-typed/dist/animatedCursor.css';
-import {startGetSchools, startGetLanguages, startGetSkills, startGetCerts} from 'actions';
+import {startGetSchools, startGetLanguages, startGetSkills, startGetCerts, startGetProjects} from 'actions';
 
 import School from 'app/components/main/School';
 import LanguageDetails from 'app/components/main/LanguageDetails';
 import SkillsDetails from 'app/components/main/SkillsDetails';
 import CertificationDetails from 'app/components/main/CertificationDetails';
+import Project from 'app/components/main/Project';
 
 import { themes, useTheme } from 'app/theme';
 import LoadingPlaceholder from 'app/components/LoadingPlaceholder';
@@ -21,7 +22,8 @@ const MainPage = ({
   schools,
   languages,
   skills,
-  certifications
+  certifications,
+  projects,
 }) =>{
   const [sentDispatch, setSentDispatch] = useState(false);
   const [theme] = useTheme()
@@ -34,6 +36,7 @@ const MainPage = ({
       dispatch(startGetLanguages());
       dispatch(startGetSkills());
       dispatch(startGetCerts());
+      dispatch(startGetProjects());
       setSentDispatch(true)
     }
     scriptForBootstrap();
@@ -72,6 +75,7 @@ const MainPage = ({
   const SchoolsLoader = LoadingPlaceholder(schools, false)(School)
   const SkillsLoader = LoadingPlaceholder(skills)(SkillsDetails)
   const CertificationLoader = LoadingPlaceholder(certifications)(CertificationDetails)
+  const ProjectLoader = LoadingPlaceholder(projects, false)(Project)
   const LanguagesLoader = LoadingPlaceholder(languages, true, "tr")(LanguageDetails)
 
   return (
@@ -112,6 +116,13 @@ const MainPage = ({
         <h1><FontAwesomeIcon icon={['fad', 'graduation-cap']} /> Education</h1>
         <div className="list-group list-group-flush">
           <SchoolsLoader />
+        </div>
+      </section>
+      {/* Project */}
+      <section id="projects" className={`py-5 container ${currentTheme.bg} ${currentTheme.text}`}>
+        <h1><FontAwesomeIcon icon={['fad', 'project-diagram']} /> Projects</h1>
+        <div className="list-group list-group-flush">
+          <ProjectLoader />
         </div>
       </section>
       {/* Skills */}
@@ -167,6 +178,7 @@ export default connect((state)=>{
     languages: state.languagesReducer,
     skills: state.skillsReducer,
     certifications: state.certificationsReducer,
+    projects: state.projectsReducer,
     theme: state.themeReducer,
   }
 })(MainPage);
