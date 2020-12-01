@@ -12,13 +12,13 @@ const SchoolSubject = ({
   const renderList = () => {
     let count = 0;
     return subjects.map(subject => (
-      <a className={`btn btn-primary mb-1 ${firstActive(++count)}`} id="list-home-list" key={`${subject.id}_side`} data-toggle="list" href={`#${subject.id}`} role="tab" aria-controls={`${school} ${subject.name}`}>{subject.name}</a>
+      <a className={`btn btn-primary mb-1 ${firstActive(++count)}`} key={`${id}_${subject.id}_side`} data-toggle="list" href={`#${id}_${subject.id}`} role="tab" aria-controls={`${school} ${subject.name}`}>{subject.name}</a>
     ))
   }
   const renderGradesContainer = () => {
     let count = 0;
     return subjects.map(subject => (
-      <div className={`tab-pane fade show ${firstActive(++count)}`} id={subject.id} key={`${subject.id}_grades`} role="tabpanel" aria-labelledby={`${school} ${subject.name} grades`}>
+      <div className={`tab-pane fade show ${firstActive(++count)}`} id={`${id}_${subject.id}`} key={`${id}_${subject.id}_grades`} role="tabpanel" aria-labelledby={`${school} ${subject.name} grades`}>
         <ul className="list-group">
           {renderGrades(subject.subjects)}
         </ul>
